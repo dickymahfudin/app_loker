@@ -201,6 +201,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: (status1) ? Colors.red : Colors.green,
                               onPressed: () {
                                 _value = "Loker 1";
+                                _incrementCounter();
                               },
                               shape: new RoundedRectangleBorder(
                                   borderRadius: new BorderRadius.circular(30)),
@@ -222,6 +223,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: (status2) ? Colors.red : Colors.green,
                               onPressed: () {
                                 _value = "Loker 2";
+                                _incrementCounter();
                               },
                               shape: new RoundedRectangleBorder(
                                   borderRadius: new BorderRadius.circular(30)),
@@ -249,6 +251,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: (status3) ? Colors.red : Colors.green,
                               onPressed: () {
                                 _value = "Loker 3";
+                                _incrementCounter();
                               },
                               shape: new RoundedRectangleBorder(
                                   borderRadius: new BorderRadius.circular(30)),
@@ -270,6 +273,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: (status4) ? Colors.red : Colors.green,
                               onPressed: () {
                                 _value = "Loker 4";
+                                _incrementCounter();
                               },
                               shape: new RoundedRectangleBorder(
                                   borderRadius: new BorderRadius.circular(30)),
@@ -297,6 +301,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: (status5) ? Colors.red : Colors.green,
                               onPressed: () {
                                 _value = "Loker 5";
+                                _incrementCounter();
                               },
                               shape: new RoundedRectangleBorder(
                                   borderRadius: new BorderRadius.circular(30)),
@@ -318,6 +323,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: (status6) ? Colors.red : Colors.green,
                               onPressed: () {
                                 _value = "Loker 6";
+                                _incrementCounter();
                               },
                               shape: new RoundedRectangleBorder(
                                   borderRadius: new BorderRadius.circular(30)),
@@ -333,11 +339,11 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.settings_overscan),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: _incrementCounter,
+      //   tooltip: 'Increment',
+      //   child: Icon(Icons.settings_overscan),
+      // ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
