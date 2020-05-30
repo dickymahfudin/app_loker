@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void initState() {
     super.initState();
-    Timer.periodic(Duration(seconds: 1), (Timer t) {
+    Timer.periodic(Duration(microseconds: 500), (Timer t) {
       getData();
       setState(() {});
     });
@@ -115,18 +115,16 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void getData() async {
-    print(_value);
-    for (var i = 1; i < 7; i++) {
-      String apiURL = _baseurl + '/get/' + "V" + i.toString();
-      var apiResult = await http.get(apiURL);
-      // print('Response status: ${apiResult.body}');
-      var temp = json.decode(apiResult.body);
-      parsingData(i, temp[0]);
+    String apiURL = _baseurl + "/project";
+    var apiResult = await http.get(apiURL);
+    var temp = json.decode(apiResult.body);
+    for (var data in temp["widgets"]) {
+      parsingData(data["pin"], data["value"]);
     }
   }
 
-  void parsingData(int index, String state) {
-    switch (index) {
+  void parsingData(int pin, String state) {
+    switch (pin) {
       case 1:
         if (state == '1') {
           status1 = true;
