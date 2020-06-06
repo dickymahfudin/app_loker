@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
@@ -35,8 +36,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String _counter, _value = "";
-  String _baseurl = "http://188.166.206.43/YtQcUqOEdp7iWbpOm1fov2TQHCI2vnnd";
+  String _baseurl =
+      "http://119.18.158.238:3579/mk-fD9isJvxYWT_Sm2JJWHB9rbU8CNhC";
   String contex;
+  String statusBayar;
   bool status = false;
   bool status1 = false;
   bool status2 = false;
@@ -45,10 +48,17 @@ class _MyHomePageState extends State<MyHomePage> {
   bool status5 = false;
   bool status6 = false;
   bool temp1 = false;
+  bool bayar = false;
+  bool bayar1 = false;
+  bool bayar2 = false;
+  bool bayar3 = false;
+  bool bayar4 = false;
+  bool bayar5 = false;
+  bool bayar6 = false;
 
   void initState() {
     super.initState();
-    Timer.periodic(Duration(microseconds: 500), (Timer t) {
+    Timer.periodic(Duration(seconds: 1), (Timer t) {
       getData();
       setState(() {});
     });
@@ -57,40 +67,107 @@ class _MyHomePageState extends State<MyHomePage> {
   Future _incrementCounter() async {
     _counter = await FlutterBarcodeScanner.scanBarcode(
         "#004297", "Cencel", true, ScanMode.DEFAULT);
-    if (_counter == "yuhu") {
+    if (_counter == "yuhu" && !temp1) {
       if (_value != "") {
-        updateData(_value);
-        if (_value == "Loker 1" && status1) {
-          contex = _value + " Closed => RP.6000";
+        statusBayar = _value;
+        if (_value == "Loker 1" && status1 && bayar1) {
+          updateData(_value);
+          contex = _value + " Closed";
           status = true;
-        } else if (_value == "Loker 2" && status2) {
-          contex = _value + " Closed => RP.6000";
+          bayar1 = false;
+          // updateBayar("0");
+        } else if (_value == "Loker 1" && status1 && !bayar1) {
+          contex = _value + " Rp 6000 Pembayaran Melalui kasir !";
+          status = false;
+        } else if (_value == "Loker 2" && status2 && bayar2) {
+          updateData(_value);
+          contex = _value + " Closed";
           status = true;
-        } else if (_value == "Loker 3" && status3) {
-          contex = _value + " Closed => RP.6000";
+          bayar2 = false;
+          // updateBayar("0");
+        } else if (_value == "Loker 2" && status2 && !bayar2) {
+          contex = _value + " Rp 6000 Pembayaran Melalui kasir !";
+          status = false;
+        } else if (_value == "Loker 3" && status3 && bayar3) {
+          updateData(_value);
+          contex = _value + " Closed";
           status = true;
-        } else if (_value == "Loker 4" && status4) {
-          contex = _value + " Closed => RP.6000";
+          bayar3 = false;
+          // updateBayar("0");
+        } else if (_value == "Loker 3" && status3 && !bayar3) {
+          contex = _value + " Rp 6000 Pembayaran Melalui kasir !";
+          status = false;
+        } else if (_value == "Loker 4" && status4 && bayar4) {
+          updateData(_value);
+          contex = _value + " Closed";
           status = true;
-        } else if (_value == "Loker 5" && status5) {
-          contex = _value + " Closed => RP.6000";
+          bayar4 = false;
+          // updateBayar("0");
+        } else if (_value == "Loker 4" && status4 && !bayar4) {
+          contex = _value + " Rp 6000 Pembayaran Melalui kasir !";
+          status = false;
+        } else if (_value == "Loker 5" && status5 && bayar5) {
+          updateData(_value);
+          contex = _value + " Closed";
           status = true;
-        } else if (_value == "Loker 6" && status6) {
-          contex = _value + " Closed => RP.6000";
+          bayar5 = false;
+          // updateBayar("0");
+        } else if (_value == "Loker 5" && status5 && !bayar5) {
+          contex = _value + " Rp 6000 Pembayaran Melalui kasir !";
+          status = false;
+        } else if (_value == "Loker 6" && status6 && bayar6) {
+          updateData(_value);
+          contex = _value + " Closed";
           status = true;
+          bayar6 = false;
+          // updateBayar("0");
+        } else if (_value == "Loker 6" && status6 && !bayar6) {
+          contex = _value + " Rp 6000 Pembayaran Melalui kasir !";
+          status = false;
         } else {
+          updateData(_value);
           contex = _value + " Open";
           status = true;
         }
+      }
+    } else if (_counter == "bayar" && temp1) {
+      if (statusBayar == "Loker 1") {
+        contex = "Pembayaran " + statusBayar + " Berhasil !";
+        status = true;
+        bayar1 = true;
+      } else if (statusBayar == "Loker 2") {
+        contex = "Pembayaran " + statusBayar + " Berhasil !";
+        status = true;
+        bayar2 = true;
+      } else if (statusBayar == "Loker 3") {
+        contex = "Pembayaran " + statusBayar + " Berhasil !";
+        status = true;
+        bayar3 = true;
+      } else if (statusBayar == "Loker 4") {
+        contex = "Pembayaran " + statusBayar + " Berhasil !";
+        status = true;
+        bayar4 = true;
+      } else if (statusBayar == "Loker 5") {
+        contex = "Pembayaran " + statusBayar + " Berhasil !";
+        status = true;
+        bayar5 = true;
+      } else if (statusBayar == "Loker 6") {
+        contex = "Pembayaran " + statusBayar + " Berhasil !";
+        status = true;
+        bayar6 = true;
       } else {
-        contex = "Please Select Loker !";
+        contex = "Untuk Pembayaran, Silahkan Lihat Harga Pada Loker";
         status = false;
       }
+      statusBayar = "";
     } else {
       status = false;
       contex = "Ops, QR Code is wrong !";
+      statusBayar = "";
     }
+    temp1 = false;
     _value = "";
+    print(temp1);
 
     setState(() {
       _displaySnackBar(context);
@@ -101,12 +178,18 @@ class _MyHomePageState extends State<MyHomePage> {
     final snackBar = SnackBar(
       content: Text(contex),
       backgroundColor: (status) ? Colors.blue : Colors.redAccent,
-      duration: Duration(seconds: 5),
+      duration: Duration(seconds: 10),
     );
     _scaffoldKey.currentState.showSnackBar(snackBar);
   }
 
   void updateData(String pin) async {
+    if (_value != "") {
+      String apiURL = _baseurl + '/update/V7?value=' + pin;
+      var apiResult = await http.get(apiURL);
+      print('Response status: ${apiResult.statusCode}');
+    }
+    sleep(const Duration(seconds: 1));
     if (_value != "") {
       String apiURL = _baseurl + '/update/V7?value=' + pin;
       var apiResult = await http.get(apiURL);
@@ -120,6 +203,13 @@ class _MyHomePageState extends State<MyHomePage> {
     var temp = json.decode(apiResult.body);
     for (var data in temp["widgets"]) {
       parsingData(data["pin"], data["value"]);
+      if (data["label"] == "bayar") {
+        if (data["value"] == "1") {
+          bayar = true;
+        } else {
+          bayar = false;
+        }
+      }
     }
   }
 
@@ -337,11 +427,14 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: _incrementCounter,
-      //   tooltip: 'Increment',
-      //   child: Icon(Icons.settings_overscan),
-      // ), // This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          temp1 = true;
+          _incrementCounter();
+        },
+        tooltip: 'Increment',
+        child: Icon(Icons.attach_money),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
